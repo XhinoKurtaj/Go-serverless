@@ -3,13 +3,18 @@ package main
 import (
 	"os"
 
-	"github.com/XhinoKurtaj/Go-serverless/handlers"
+	"github.com/XhinoKurtaj/go-serverless/handlers"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/service/dynamodb"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
+)
+
+var (
+	dynaClient dynamodbiface.DynamoDBAPI
 )
 
 func main() {
@@ -22,7 +27,7 @@ func main() {
 		return
 	}
 
-	dynaClient := dynamodb.New(awsSession)
+	dynaClient = dynamodb.New(awsSession)
 	lambda.Start(handler)
 }
 
