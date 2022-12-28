@@ -3,8 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/XhinoKurtaj/go-serverless/handlers"
-
+	"github.com/XhinoKurtaj/go-serverless/pkg/handlers"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
@@ -31,7 +30,7 @@ func main() {
 	lambda.Start(handler)
 }
 
-const tableName = "LambdaInGoUser"
+const tableName = "go-serverless"
 
 func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	switch req.HTTPMethod {
